@@ -1,0 +1,103 @@
+body {
+    margin: 0;
+    background: #232323;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+hr {
+    border: 1px solid #A5A5A5;
+}
+
+.filters-container {
+    margin: 3rem 3rem;
+    width: 14rem;
+    height: 22rem;
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    color: #A5A5A5;
+    background: #131313;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+.cards-container {
+    background-color: #232323;
+    color: #ffffff;
+    height: auto;
+    width: 87rem;
+    margin-top: 3rem;
+}
+
+.cards-container > h2{
+    color: #FFFFFF80;
+    margin-bottom: 4rem;
+}
+
+.slide-section {
+    background: #131313;
+    border-radius: 1rem;
+    height: 20rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+.product-card {
+    background: #232323;
+    height: 16rem;
+    width: 18rem;
+    margin: 2rem 2rem;
+    border-radius: 0.5rem;
+    transition: 0.2s;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+
+.product-card:hover {
+    height: 16.5rem;
+    width: 18.5rem;
+    margin: 1.5rem 2rem;
+    background: #2b2b2b;
+}
+
+.img-box {
+    position: relative;
+    top: 0.9rem;
+    left: 0.9rem;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 0.3rem;
+}
+
+.product-card-top-half {
+    display: flex;
+    justify-content: flex-start;
+    height: 50%;
+}
+
+.product-img {
+    border-radius: 0.3rem;
+    width: 6rem;
+}
+
+.brand-name {
+    color: #A5A5A5;
+}
+
+.product-card-top-half p {
+    margin-left: 2rem;
+}
