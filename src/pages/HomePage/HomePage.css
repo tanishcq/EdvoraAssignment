@@ -31,7 +31,7 @@ hr {
     background-color: #232323;
     color: #ffffff;
     height: auto;
-    width: 87rem;
+    width: 76vw;
     margin-top: 3rem;
 }
 
@@ -95,9 +95,48 @@ hr {
 }
 
 .brand-name {
+    font-size: smaller;
     color: #A5A5A5;
 }
 
 .product-card-top-half p {
     margin-left: 2rem;
+}
+
+.product-card-bottom-half {
+    display: grid;
+    grid-template: 60px 60px / 1fr 1fr;
+    height: 50%;
+}
+
+.product-card-bottom-half p{
+    color: #A5A5A5;
+    font-size: smaller;
+    margin-left: 0.9rem;
+}
+
+.product-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    background: #232323;
+    color: white;
+    height: 2.5rem;
+    width: auto;
+    border-radius: 0.2rem;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+}
+
+.product-filter p {
+    margin-left: 1rem;
+}
+
+.product-filter img{
+    width: 15px;
+    position: relative;
+    right: 10px;
 }

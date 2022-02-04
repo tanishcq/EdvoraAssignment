@@ -2,11 +2,18 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
 import ProductCard from '../../components/ProductCard';
+import AsyncSelect from 'react-select/async';
+import DropdownSvg from '../../svg/dropdown.svg'
 import './HomePage.css';
 
 
 export default function HomePage () {
-    const [data, setData] = React.useState([]);
+    const [data, setData] = useState([]);
+    const [inputValue, setValue] = useState([]);
+    const [selectedValue, setSelectedValue] = useState(null);
+
+    const handleInputChange = value => setValue(value);
+    const handleChange = value => setSelectedValue(value);
 
     useEffect(() => {
         async function getData() {
@@ -75,6 +82,12 @@ export default function HomePage () {
                 <div className='filters-container'>
                     <p>Filter</p>
                     <hr/>
+                    <div className='product-filter'>
+                        <p>Products</p>
+                        <img src={DropdownSvg} alt="."/>
+                    </div>
+                    <div className='state-filter'></div>
+                    <div className='city-filter'></div>
                 </div>
             </div>
             <div className='right-gridbox'>
