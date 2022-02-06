@@ -41,15 +41,15 @@ export default function HomePage () {
         dots: false,
         infinite: false,
         speed: 400,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToShow: filteredData.length < 4 ? filteredData.length : 4,
+        slidesToScroll: filteredData.length < 4 ? filteredData.length : 4,
         initialSlide: 0,
         responsive: [
             {
             breakpoint: 1700,
             settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
+                slidesToShow: filteredData.length < 3 ? filteredData.length : 3,
+                slidesToScroll: filteredData.length < 3 ? filteredData.length : 3,
                 infinite: false,
                 dots: false
             }
@@ -136,7 +136,7 @@ export default function HomePage () {
                     <div className='slide-section'>
                         <Slider {...settings}>
                             {loading? (<h1>Loading...</h1>) :
-                                filteredData.filter((value) => {
+                                filteredData?.filter((value) => {
                                     if(searchProduct === "") {
                                         return value;
                                     }
@@ -144,7 +144,7 @@ export default function HomePage () {
                                         return value;
                                     }
                                 })
-                                .map((e, i) => {
+                                ?.map((e, i) => {
                                     return(
                                         <ProductCard key={i} {...e} />
                                     )
