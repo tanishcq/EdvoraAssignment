@@ -17,7 +17,7 @@ export default function ProductCard(props) {
             <div className='product-card-bottom-half'>
                 <p id='location'>{props.address.city}, {props.address.state}</p>
                 <p>Date: {date}</p>
-                <p>{props.discription}</p>
+                <p id='description'>{props.discription}</p>
             </div>
         </div>
     )
