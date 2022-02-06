@@ -2,18 +2,14 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
 import ProductCard from '../../components/ProductCard';
-import AsyncSelect from 'react-select/async';
-import DropdownSvg from '../../svg/dropdown.svg'
+import customStyles from '../../common/customStyles.js'
+// import DropdownSvg from '../../svg/dropdown.svg'
 import './HomePage.css';
 
 
 export default function HomePage () {
     const [data, setData] = useState([]);
-    const [inputValue, setValue] = useState([]);
-    const [selectedValue, setSelectedValue] = useState(null);
-
-    const handleInputChange = value => setValue(value);
-    const handleChange = value => setSelectedValue(value);
+    // const [uniqueProductList, setUniqueProductList] = useState([]);
 
     useEffect(() => {
         async function getData() {
@@ -22,6 +18,12 @@ export default function HomePage () {
         }
         getData();
     },[]);
+    
+    const uniqueProductList = [...new Set(data?.map(data => data.product_name))]
+    const uniqueStateList = [...new Set(data?.map(data => data.address.state))]
+    const uniqueCityList = [...new Set(data?.map(data => data.address.city))]
+    // setUniqueProductList (unique);
+    // console.log(uniqueProductList);
 
     var settings = {
         dots: false,
@@ -32,62 +34,76 @@ export default function HomePage () {
         initialSlide: 0,
         responsive: [
             {
-            breakpoint: 1500,
-            settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                infinite: false,
-                dots: false
-            }
-            },
-            {
-            breakpoint: 1300,
-            settings: {
-                slidesToShow: 4,
-                slidesToScroll: 4,
-                infinite: false,
-                dots: false
-            }
-            },
-            {
-            breakpoint: 1024,
+            breakpoint: 1700,
             settings: {
                 slidesToShow: 3,
                 slidesToScroll: 3,
-                infinite: true,
+                infinite: false,
                 dots: false
             }
             },
             {
-            breakpoint: 600,
+            breakpoint: 1400,
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
-                initialSlide: 2
+                infinite: false,
+                dots: false
             }
             },
             {
-            breakpoint: 480,
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: false,
+                dots: false
+            }
+            },
+            {
+            breakpoint: 1060,
             settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                infinite: true,
+                dots: false
             }
             }
         ]
     };
-    console.log(data);
     return (
         <div className='container'>
             <div className='left-gridbox'>
                 <div className='filters-container'>
                     <p>Filter</p>
                     <hr/>
-                    <div className='product-filter'>
-                        <p>Products</p>
-                        <img src={DropdownSvg} alt="."/>
-                    </div>
-                    <div className='state-filter'></div>
-                    <div className='city-filter'></div>
+                    <select className='product-filter'>
+                    <option hidden value="">Products</option>
+                        {uniqueProductList?.map((item,index)=>{
+                            return(
+                                <option key={index} value={item}>{item}</option> 
+                            )
+                        })}
+                    <option value="">None</option>
+                    </select>
+                    <select className='product-filter'>
+                        <option defaultValue={""} value={null} hidden>State</option>
+                        {uniqueStateList?.map((item,index)=>{
+                            return(
+                                <option key={index} value={item}>{item}</option> 
+                            )
+                        })}
+                        <option value="">None</option>
+                    </select>
+                    <select className='product-filter'>
+                        <option defaultValue={""} value={null} hidden>City</option>
+                        {uniqueCityList?.map((item,index)=>{
+                            return(
+                                <option key={index} value={item}>{item}</option> 
+                            )
+                        })}
+                        <option value="">None</option>
+                    </select>
                 </div>
             </div>
             <div className='right-gridbox'>
