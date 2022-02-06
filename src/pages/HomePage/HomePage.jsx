@@ -48,8 +48,17 @@ export default function HomePage () {
             {
             breakpoint: 1700,
             settings: {
-                slidesToShow: filteredData.length < 3 ? filteredData.length : 3,
-                slidesToScroll: filteredData.length < 3 ? filteredData.length : 3,
+                slidesToShow: filteredData.length < 4 ? filteredData.length : 4,
+                slidesToScroll: filteredData.length < 4 ? filteredData.length : 4,
+                infinite: false,
+                dots: false
+            }
+            },
+            {
+            breakpoint: 1600,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4,
                 infinite: false,
                 dots: false
             }
@@ -57,14 +66,14 @@ export default function HomePage () {
             {
             breakpoint: 1400,
             settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
+                slidesToShow: 3,
+                slidesToScroll: 3,
                 infinite: false,
                 dots: false
             }
             },
             {
-            breakpoint: 1200,
+            breakpoint: 1150,
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
@@ -75,6 +84,15 @@ export default function HomePage () {
             {
             breakpoint: 1060,
             settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: false,
+                dots: false
+            }
+            },
+            {
+            breakpoint: 890,
+            settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 infinite: false,
@@ -82,7 +100,16 @@ export default function HomePage () {
             }
             },
             {
-            breakpoint: 800,
+            breakpoint: 700,
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                infinite: false,
+                dots: false
+            }
+            },
+            {
+            breakpoint: 580,
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
