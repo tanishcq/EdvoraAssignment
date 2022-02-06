@@ -2,19 +2,26 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
 import ProductCard from '../../components/ProductCard';
-import customStyles from '../../common/customStyles.js'
+// import customStyles from '../../common/customStyles.js'
 // import DropdownSvg from '../../svg/dropdown.svg'
 import './HomePage.css';
 
 
 export default function HomePage () {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);   
+    const [searchProduct, setSearchProduct] = useState("");   
+    const [product, setProduct] = useState("");
+    const [state, setState] = useState("");
+    const [city, setCity] = useState("");
     // const [uniqueProductList, setUniqueProductList] = useState([]);
 
     useEffect(() => {
         async function getData() {
+            setLoading(true);
             const res = await axios.get("https://assessment-edvora.herokuapp.com/");
             setData(res.data);
+            setLoading(false);
         }
         getData();
     },[]);
@@ -24,6 +31,11 @@ export default function HomePage () {
     const uniqueCityList = [...new Set(data?.map(data => data.address.city))]
     // setUniqueProductList (unique);
     // console.log(uniqueProductList);
+
+    const filteredData = data
+    .filter((item) => item.product_name.toLowerCase().includes(product.toLowerCase()))
+    .filter((item) => item.address.state.includes(state))
+    .filter((item) => item.address.city.includes(city));
 
     var settings = {
         dots: false,
@@ -65,7 +77,16 @@ export default function HomePage () {
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                infinite: true,
+                infinite: false,
+                dots: false
+            }
+            },
+            {
+            breakpoint: 800,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: false,
                 dots: false
             }
             }
@@ -75,9 +96,9 @@ export default function HomePage () {
         <div className='container'>
             <div className='left-gridbox'>
                 <div className='filters-container'>
-                    <p>Filter</p>
+                    <input type="text" placeholder='Filter' onChange={(e)=> setProduct(e.target.value)}/>
                     <hr/>
-                    <select className='product-filter'>
+                    <select className='product-filter' onChange={(e)=>setProduct(e.target.value)}>
                     <option hidden value="">Products</option>
                         {uniqueProductList?.map((item,index)=>{
                             return(
@@ -86,20 +107,20 @@ export default function HomePage () {
                         })}
                     <option value="">None</option>
                     </select>
-                    <select className='product-filter'>
+                    <select className='product-filter' onChange={(e)=>setState(e.target.value)}>
                         <option defaultValue={""} value={null} hidden>State</option>
                         {uniqueStateList?.map((item,index)=>{
                             return(
-                                <option key={index} value={item}>{item}</option> 
+                                <option key={index} value={item} >{item}</option> 
                             )
                         })}
                         <option value="">None</option>
                     </select>
-                    <select className='product-filter'>
+                    <select className='product-filter' onChange={(e)=>setCity(e.target.value)}>
                         <option defaultValue={""} value={null} hidden>City</option>
                         {uniqueCityList?.map((item,index)=>{
                             return(
-                                <option key={index} value={item}>{item}</option> 
+                                <option key={index} value={item} >{item}</option> 
                             )
                         })}
                         <option value="">None</option>
@@ -110,12 +131,20 @@ export default function HomePage () {
                 <div className='cards-container'>
                     <h1>Edvora</h1>
                     <h2>Products</h2>
-                    <h3>Brands</h3>
+                    <h3>Products List</h3>
                     <hr/>
                     <div className='slide-section'>
                         <Slider {...settings}>
-                            {
-                                data.length > 0 && data.map((e, i) => {
+                            {loading? (<h1>Loading...</h1>) :
+                                filteredData.filter((value) => {
+                                    if(searchProduct === "") {
+                                        return value;
+                                    }
+                                    else if (value.product_name.toLowerCase().includes(searchProduct.toLowerCase())) {
+                                        return value;
+                                    }
+                                })
+                                .map((e, i) => {
                                     return(
                                         <ProductCard key={i} {...e} />
                                     )
@@ -123,8 +152,27 @@ export default function HomePage () {
                             }
                         </Slider>
                     </div>
-                    <h3>Products List</h3>
+                    <h3>Brands List</h3>
                     <hr/>
+                    <div className='slide-section'>
+                        <Slider {...settings}>
+                            {loading? (<h1>Loading...</h1>) :
+                                filteredData.filter((value) => {
+                                    if(searchProduct === "") {
+                                        return value;
+                                    }
+                                    else if (value.product_name.toLowerCase().includes(searchProduct.toLowerCase())) {
+                                        return value;
+                                    }
+                                })
+                                .map((e, i) => {
+                                    return(
+                                        <ProductCard key={i} {...e} />
+                                    )
+                                })
+                            }
+                        </Slider>
+                    </div>
                 </div>
             </div>
         </div>
