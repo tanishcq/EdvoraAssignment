@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/EdvoraAssignment/static/css/main.47281f7b.css",
+    "main.js": "/EdvoraAssignment/static/js/main.a213325f.js",
+    "index.html": "/EdvoraAssignment/index.html",
+    "static/media/dropdown.svg": "/EdvoraAssignment/static/media/dropdown.9ba4f0c0587cd368b7c7.svg",
+    "main.47281f7b.css.map": "/EdvoraAssignment/static/css/main.47281f7b.css.map",
+    "main.a213325f.js.map": "/EdvoraAssignment/static/js/main.a213325f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47281f7b.css",
+    "static/js/main.a213325f.js"
+  ]
+}
