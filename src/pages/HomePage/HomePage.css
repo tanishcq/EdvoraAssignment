@@ -115,6 +115,8 @@ hr {
 }
 
 .product-card-top-half p {
+    position: relative;
+    top: -0.5rem;
     margin-left: 2rem;
 }
 
@@ -159,6 +161,12 @@ input {
     background-color: transparent;
 }
 
+#location {
+    position: relative;
+    top: 0.3rem;
+    font-size: 11px;
+}
+
 .product-filter p {
     margin-left: 1rem;
 }
@@ -168,6 +176,11 @@ input {
     position: relative;
     right: 10px;
 }
+
+.price{
+    font-size: 13px;
+}
+
 
 @media (max-width: 700px) {
     .right-gridbox{
